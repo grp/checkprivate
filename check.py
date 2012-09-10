@@ -88,7 +88,8 @@ def find_methods(header):
 
     while find_prefix(header, '@interface') != -1:
         cls = header[find_prefix(header, '@interface')]
-        cls = cls[len('@interface '):cls.find(' : ')] if ' : ' in cls else cls[len('@interface '):]
+        cls = cls[len('@interface '):cls.find(' : ')] if ' : ' in cls else (cls[len('@interface '):cls.find('(')] if '(' in cls else cls[len('@interface '):])
+        cls = cls.strip()
 
         header = header[find_prefix(header, '@interface') + 1:]
         working = header[:find_prefix(header, '@end')]
@@ -129,7 +130,7 @@ if __name__ == '__main__':
             for m in hv:
                 if m not in cv:
                     print '%s: %s' % (k, m)
-        elif k.find('(') == -1:
+        else:
             print "Missing class: %s" % k
     
 
