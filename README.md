@@ -44,5 +44,6 @@ A folder with a collection of header files for the version of the binary you wan
 
  - It can't scan your source code to see what methods you call. You'll have to list all the private methods you use in a header file.
  - It can't tell you about instance variable changes.
+ - It can't handle methods with blocks, and will probably simply crash with function pointers.
  - Most importantly, **this cannot** discover if the semantics of any of these methods changed. This is just a starting point for porting work.
 
